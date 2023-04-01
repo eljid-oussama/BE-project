@@ -35,6 +35,21 @@ public class Path {
     public static Path createFastestPathFromNodes(Graph graph, List<Node> nodes)
             throws IllegalArgumentException {
         List<Arc> arcs = new ArrayList<Arc>();
+        boolean arc_rapide_init = false;
+        Arc arc_rapide = null;
+
+        /*aucun noeud */
+        if(nodes.size()==0){
+            return new Path(graph);
+        }
+        /*Un noeud */
+        else if (nodes.size()== 1 ){
+            return new Path(graph, nodes.get(0));
+        }
+        /*plus de 2 noeuds */
+        else{
+
+        }
         // TODO:
         return new Path(graph, arcs);
     }
@@ -202,7 +217,26 @@ public class Path {
      */
     public boolean isValid() {
         // TODO:
-        return false;
+        /*chemin vide */
+        if (this.isEmpty()){
+            return true;
+        }
+
+        /*le chemin contient un seul noeud */
+        else if (this.size()==1){
+            return true;
+        }
+        /*le chemin contient plus de deux noeuds */
+        else{
+            Node origine = this.getOrigin();
+            for(Arc arc : this.arcs){
+                if (!origine.equals(arc.getOrigin())) {
+    				return false;
+    			}
+    			origine = arc.getDestination();
+            }
+        }
+        return true;
     }
 
     /**
@@ -213,8 +247,11 @@ public class Path {
      * @deprecated Need to be implemented.
      */
     public float getLength() {
-        // TODO:
-        return 0;
+        float totalLength =0.0f;
+        for (Arc myArc : this.arcs) {
+            totalLength += myArc.getLength();
+        }
+        return totalLength;
     }
 
     /**
@@ -228,8 +265,11 @@ public class Path {
      * @deprecated Need to be implemented.
      */
     public double getTravelTime(double speed) {
-        // TODO:
-        return 0;
+        double vitesse = (speed * 1000.0)/3600.0 ;
+        double Time ;
+        float longueur = getLength() ;
+        Time = longueur / vitesse ;
+        return Time;
     }
 
     /**
@@ -241,8 +281,11 @@ public class Path {
      * @deprecated Need to be implemented.
      */
     public double getMinimumTravelTime() {
-        // TODO:
-        return 0;
+        double Time = 0;
+        for (Arc myArc : this.arcs){
+            Time += myArc.getMinimumTravelTime();
+        }
+        return Time ;
     }
 
 }
