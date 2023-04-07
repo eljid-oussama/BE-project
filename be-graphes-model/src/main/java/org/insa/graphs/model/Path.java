@@ -48,17 +48,49 @@ public class Path {
             return new Path(graph, nodes.get(0));   
         }
         /*plus de 2 noeuds */
-        //else{
-            //Path P=null;
-           //for (int i = 0; i < (nodes.size()); i++) {
-            //    Node endNode = nodes.get(i);
-            //    P=new Path(graph,endNode);
-            //}
-            //return P;
-        //}
-        else{
-            return null;
-        }
+        else {
+    
+            Iterator<Node> nodeIte = nodes.iterator();
+            Node origine = nodeIte.next();
+    
+            /* Parcours des noeuds */
+            while (nodeIte.hasNext()) {
+                Node destination = nodeIte.next();
+    
+                /* Parcours des arcs dont le noeud est l'origine */
+                Iterator<Arc> arcIter = origine.getSuccessorite();
+                
+                while (arcIter.hasNext()) {
+                    Arc arc = arcIter.next();
+                    // Teste si l'arc mene bien au noeud souhaite
+                    if (arc.getDestination().equals(destination)) {
+                        /*
+                         * Si c'est le premier arc que l'on considere, 
+                         * on initialise arc_court avec cet arc
+                         */
+                        if (!arc_rapide_init) {
+                            arc_rapide = arc;
+                            arc_rapide_init = true;
+                        }
+                        /* Sinon on regarde, si l'arc est plus court */
+                        else if (arc.getMinimumTravelTime() < arc_rapide.getMinimumTravelTime()) {
+                            arc_rapide = arc;
+                        }
+                    }
+                }
+                /* Si on n'a pas retenu d'arc, c'est que la liste de successeurs n'est pas valide */
+                if (arc_rapide == null) {
+                    throw new IllegalArgumentException();
+                }
+                /* Sinon, on ajoute l'arc le plus court */
+                else {
+                    arcs.add(arc_rapide);
+                    origine = destination;
+                    arc_rapide_init = false;
+                }
+            }
+            return new Path(graph, arcs);
+        }						
       
      
 
