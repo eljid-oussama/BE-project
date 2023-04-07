@@ -103,7 +103,7 @@ public class Path {
                 Node destination = nodeIte.next();
     
                 /* Parcours des arcs dont le noeud est l'origine */
-                Iterator<Arc> arcIter = origine.getSuccessors();
+                Iterator<Arc> arcIter = origine.getSuccessorite();
                 
                 while (arcIter.hasNext()) {
                     Arc arc = arcIter.next();

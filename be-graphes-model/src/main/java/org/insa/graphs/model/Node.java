@@ -123,7 +123,11 @@ public final class Node implements Comparable<Node> {
      * 
      * @see Collections#unmodifiableList(List)
      */
-    public Iterator<Arc> getSuccessors() {
+    public List<Arc> getSuccessors() {
+        return Collections.unmodifiableList(this.successors);
+    }
+
+    public Iterator<Arc> getSuccessorite() {
         return Collections.unmodifiableList(this.successors).iterator();
     }
 
