@@ -44,11 +44,16 @@ public class Path {
         }
         /*Un noeud */
         else if (nodes.size()== 1 ){
-            return new Path(graph, nodes.get(0));   //get？？？？
+            return new Path(graph, nodes.get(0));   
         }
         /*plus de 2 noeuds */
         else{
-
+            for (int i = 0; i < (nodes.size()-1); i++) {
+                Node endNode = nodes.get(i);
+                Path(graph,endNode);
+            }
+            
+            //rerurn 
         }
         // TODO:
         return new Path(graph, arcs);
