@@ -226,7 +226,7 @@ public class Path {
         else if (this.size()==1){
             return true;
         }
-        /*le chemin contient plus de deux noeuds */
+        /*le chemin contient plus de deux noeuds et continue */
         else{
             Node origine = this.getOrigin();
             for(Arc arc : this.arcs){
@@ -265,7 +265,7 @@ public class Path {
      * @deprecated Need to be implemented.
      */
     public double getTravelTime(double speed) {
-        double vitesse = (speed * 1000.0)/3600.0 ;
+        double vitesse = (speed * 1000.0)/3600.0 ;  //pourquoi???
         double Time ;
         float longueur = getLength() ;
         Time = longueur / vitesse ;
@@ -280,7 +280,7 @@ public class Path {
      * 
      * @deprecated Need to be implemented.
      */
-    public double getMinimumTravelTime() {
+    public double getMinimumTravelTime() {    //pas compris ici
         double Time = 0;
         for (Arc myArc : this.arcs){
             Time += myArc.getMinimumTravelTime();
