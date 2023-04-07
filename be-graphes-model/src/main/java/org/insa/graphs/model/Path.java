@@ -2,6 +2,7 @@ package org.insa.graphs.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -47,16 +48,21 @@ public class Path {
             return new Path(graph, nodes.get(0));   
         }
         /*plus de 2 noeuds */
+        //else{
+            //Path P=null;
+           //for (int i = 0; i < (nodes.size()); i++) {
+            //    Node endNode = nodes.get(i);
+            //    P=new Path(graph,endNode);
+            //}
+            //return P;
+        //}
         else{
-            for (int i = 0; i < (nodes.size()-1); i++) {
-                Node endNode = nodes.get(i);
-                Path(graph,endNode);
-            }
-            
-            //rerurn 
+            return null;
         }
-        // TODO:
-        return new Path(graph, arcs);
+      
+     
+
+        
     }
 
     /**
@@ -73,11 +79,63 @@ public class Path {
      * 
      * @deprecated Need to be implemented.
      */
-    public static Path createShortestPathFromNodes(Graph graph, List<Node> nodes)
-            throws IllegalArgumentException {
+    public static Path createShortestPathFromNodes(Graph graph, List<Node> nodes) throws IllegalArgumentException {
         List<Arc> arcs = new ArrayList<Arc>();
-        // TODO:
-        return new Path(graph, arcs);
+        boolean arc_court_init = false;
+        Arc arc_court = null;
+        
+        /* Aucun noeud */
+        if (nodes.size() == 0) {
+            return new Path(graph);
+        }
+        /* Un noeud */
+        else if (nodes.size() == 1) {
+            return new Path(graph, nodes.get(0));
+        }
+        /* Au moins deux noeuds */
+        else {
+    
+            Iterator<Node> nodeIte = nodes.iterator();
+            Node origine = nodeIte.next();
+    
+            /* Parcours des noeuds */
+            while (nodeIte.hasNext()) {
+                Node destination = nodeIte.next();
+    
+                /* Parcours des arcs dont le noeud est l'origine */
+                Iterator<Arc> arcIter = origine.getSuccessors();
+                
+                while (arcIter.hasNext()) {
+                    Arc arc = arcIter.next();
+                    // Teste si l'arc mene bien au noeud souhaite
+                    if (arc.getDestination().equals(destination)) {
+                        /*
+                         * Si c'est le premier arc que l'on considere, 
+                         * on initialise arc_court avec cet arc
+                         */
+                        if (!arc_court_init) {
+                            arc_court = arc;
+                            arc_court_init = true;
+                        }
+                        /* Sinon on regarde, si l'arc est plus court */
+                        else if (arc.getLength() < arc_court.getLength()) {
+                            arc_court = arc;
+                        }
+                    }
+                }
+                /* Si on n'a pas retenu d'arc, c'est que la liste de successeurs n'est pas valide */
+                if (arc_court == null) {
+                    throw new IllegalArgumentException();
+                }
+                /* Sinon, on ajoute l'arc le plus court */
+                else {
+                    arcs.add(arc_court);
+                    origine = destination;
+                    arc_court_init = false;
+                }
+            }
+            return new Path(graph, arcs);
+        }						
     }
 
     /**
