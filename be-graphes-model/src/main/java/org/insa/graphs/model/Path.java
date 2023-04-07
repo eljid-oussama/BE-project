@@ -44,7 +44,7 @@ public class Path {
         }
         /*Un noeud */
         else if (nodes.size()== 1 ){
-            return new Path(graph, nodes.get(0));
+            return new Path(graph, nodes.get(0));   //get？？？？
         }
         /*plus de 2 noeuds */
         else{
