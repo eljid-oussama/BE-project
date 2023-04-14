@@ -145,12 +145,11 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         }
         else{
             position=this.array.indexOf(x);
-            
-           
+            //trouve 'x' 
             if(position>=0 && position<this.currentSize ) {
                 position_dernier=--this.currentSize;
                 //if(position_dernier=position)
-            
+                
                 if(position_dernier>position){
                     dernier_element=this.array.get(position_dernier);
                     this.array.set(position, dernier_element);
@@ -158,8 +157,9 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
                     this.percolateUp(position);
                 }
             }
-            
-            else{   //par trouve dans le tas
+
+            //par trouve dans le tas
+            else{   
                
                 throw new ElementNotFoundException(x);
             }
