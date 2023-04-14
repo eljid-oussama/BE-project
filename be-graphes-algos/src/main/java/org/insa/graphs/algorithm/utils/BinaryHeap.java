@@ -67,7 +67,7 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }
 
     /**
-     * Internal method to percolate up in the heap.
+     * Internal method to percolate up in the heap.  
      * 
      * @param index Index at which the percolate begins.
      */
@@ -137,7 +137,37 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
     @Override
     public void remove(E x) throws ElementNotFoundException {
-        // TODO:
+         int position;
+         int position_dernier;
+         E dernier_element;
+        if(this.isEmpty()){
+            throw new ElementNotFoundException(x);
+        }
+        else{
+            position=this.array.indexOf(x);
+            
+           
+            if(position>=0 && position<this.currentSize ) {
+                position_dernier=--this.currentSize;
+                //if(position_dernier=position)
+            
+                if(position_dernier>position){
+                    dernier_element=this.array.get(position_dernier);
+                    this.array.set(position, dernier_element);
+                    this.percolateDown(position);
+                    this.percolateUp(position);
+                }
+            }
+            
+            else{   //par trouve dans le tas
+               
+                throw new ElementNotFoundException(x);
+            }
+                
+                
+            
+
+        }
     }
 
     @Override
