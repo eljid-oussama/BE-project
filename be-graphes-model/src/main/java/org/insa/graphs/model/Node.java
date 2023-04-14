@@ -127,9 +127,7 @@ public final class Node implements Comparable<Node> {
         return Collections.unmodifiableList(this.successors);
     }
 
-    public Iterator<Arc> getSuccessorite() {
-        return Collections.unmodifiableList(this.successors).iterator();
-    }
+ 
 
     /**
      * @return Location of this node.

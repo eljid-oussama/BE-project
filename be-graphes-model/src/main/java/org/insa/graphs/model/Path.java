@@ -59,10 +59,9 @@ public class Path {
                 Node destination = nodeIte.next();
     
             
-                Iterator<Arc> arcIter = origine.getSuccessorite();
+               List<Arc> arcIter = origine.getSuccessors();
                 
-                while (arcIter.hasNext()) {
-                    Arc arc = arcIter.next();
+                for(Arc arc : arcIter) {
                    
                     if (arc.getDestination().equals(destination)) {
                        
@@ -132,10 +131,10 @@ public class Path {
             while (nodeIte.hasNext()) {
                 Node destination = nodeIte.next();
     
-                Iterator<Arc> arcIter = origine.getSuccessorite(); //cherhcer le arc dont son origine est origine
+                List<Arc> arcIter = origine.getSuccessors();
                 
-                while (arcIter.hasNext()) {
-                    Arc arc = arcIter.next();
+                for(Arc arc : arcIter) {
+                    
                     // Teste si l'arc mene bien au noeud souhaite
                     if (arc.getDestination().equals(destination)) {
 
