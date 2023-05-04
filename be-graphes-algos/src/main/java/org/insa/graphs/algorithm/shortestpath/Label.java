@@ -36,7 +36,11 @@ public class Label implements Comparable<Label> {
     }
 
     // Getter pour le coût, qui renvoie le coût réalisé
+<<<<<<< HEAD
     public float getTotalCost() {
+=======
+    public float getCost() {
+>>>>>>> 58d94291998e344089902662fefe5f094adf84e0
         return this.cout_realise;
     }
 
@@ -50,11 +54,19 @@ public class Label implements Comparable<Label> {
     }
 
    // Setteur
+<<<<<<< HEAD
     public void setCout_realise(float costSoFar) {
         this.cout_realise = costSoFar;
     }
     
     public void setMarque() {
+=======
+    public void setCostSoFar(float costSoFar) {
+        this.cout_realise = costSoFar;
+    }
+    
+    public void setMarque(boolean marque) {
+>>>>>>> 58d94291998e344089902662fefe5f094adf84e0
         this.marque = true;
     }
 
@@ -71,6 +83,7 @@ public class Label implements Comparable<Label> {
     }
     
 
+<<<<<<< HEAD
     //comprend pas : essaye yongjia!!!!!!!!!
     
 	/* Compare les Labels selon leur coût */
@@ -89,4 +102,7 @@ public class Label implements Comparable<Label> {
 	}
 
     //????Vous devez aussi pouvoir associer un label à chaque noeud — sans modifier la classe Node ni la classe Graph. 
+=======
+     
+>>>>>>> 58d94291998e344089902662fefe5f094adf84e0
 }
