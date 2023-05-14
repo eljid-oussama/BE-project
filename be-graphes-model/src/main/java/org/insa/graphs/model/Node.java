@@ -159,9 +159,6 @@ public final class Node implements Comparable<Node> {
         return Integer.compare(getId(), other.getId());
     }
 
-   // @Override
-   // public Iterator<Arc> iterator() {
-   //    return Collections.unmodifiableList(this.successors).iterator();
-   // }
+   
 
 }
