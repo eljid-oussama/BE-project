@@ -20,7 +20,7 @@ import java.util.List;
  * </p>
  *
  */
-public final class Node implements Comparable<Node> {
+public final class Node implements Comparable<Node>,   Iterable<Arc>{  //ajpouote iterable
 
     /**
      * <p>
@@ -159,6 +159,9 @@ public final class Node implements Comparable<Node> {
         return Integer.compare(getId(), other.getId());
     }
 
-   
+    @Override ///implementation d'interface iterable 
+    public Iterator<Arc> iterator() {
+       return Collections.unmodifiableList(this.successors).iterator();
+   }
 
 }
