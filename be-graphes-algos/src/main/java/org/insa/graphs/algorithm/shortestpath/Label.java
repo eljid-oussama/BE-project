@@ -2,7 +2,7 @@ package org.insa.graphs.algorithm.shortestpath;
 
 import org.insa.graphs.model.Node;
 
-public class Label {
+public class Label implements Comparable<Label> {
     private Node sommet_courant; // Sommet courant associé à ce label
     private boolean marque; // Booléen indiquant si le coût min de ce sommet est connu
     private float cout_realise; // Coût réalisé du plus court chemin depuis l'origine vers le sommet
@@ -36,7 +36,7 @@ public class Label {
     }
 
     // Getter pour le coût, qui renvoie le coût réalisé
-    public float getCost() {
+    public float getTotalCost() {
         return this.cout_realise;
     }
 
@@ -50,11 +50,11 @@ public class Label {
     }
 
    // Setteur
-    public void setCostSoFar(float costSoFar) {
+    public void setCout_realise(float costSoFar) {
         this.cout_realise = costSoFar;
     }
     
-    public void setMarque(boolean marque) {
+    public void setMarque() {
         this.marque = true;
     }
 
@@ -69,6 +69,24 @@ public class Label {
     public void setLabel(String label) {
         this.label = label;
     }
+    
 
-     
+    //comprend pas : essaye yongjia!!!!!!!!!
+    
+	/* Compare les Labels selon leur coût */
+	public int compareTo(Label autre) {
+		int resultat;
+		if (this.getcout_realise() < autre.getcout_realise()) {
+			resultat = -1;
+		}
+		else if (this.getcout_realise() == autre.getcout_realise()) {
+			resultat = 0;
+		}
+		else {
+			resultat = 1;
+		}
+		return resultat;
+	}
+
+    //????Vous devez aussi pouvoir associer un label à chaque noeud — sans modifier la classe Node ni la classe Graph. 
 }
