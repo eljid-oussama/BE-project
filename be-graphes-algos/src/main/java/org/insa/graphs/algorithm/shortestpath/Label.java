@@ -2,7 +2,7 @@ package org.insa.graphs.algorithm.shortestpath;
 
 import org.insa.graphs.model.Node;
 
-public class Label implements Comparable<Label> {
+public class Label implements Comparable<Label>  {
     private Node sommet_courant; // Sommet courant associé à ce label
     private boolean marque; // Booléen indiquant si le coût min de ce sommet est connu
     private float cout_realise; // Coût réalisé du plus court chemin depuis l'origine vers le sommet
@@ -71,7 +71,7 @@ public class Label implements Comparable<Label> {
     }
     
 
-    //comprend pas : essaye yongjia!!!!!!!!!
+
     
 	/* Compare les Labels selon leur coût */
 	public int compareTo(Label autre) {
@@ -87,6 +87,6 @@ public class Label implements Comparable<Label> {
 		}
 		return resultat;
 	}
-
-    //????Vous devez aussi pouvoir associer un label à chaque noeud — sans modifier la classe Node ni la classe Graph. 
+    
+     
 }
