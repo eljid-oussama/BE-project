@@ -20,6 +20,9 @@ public class AStarAlgorithmTest {
     
    
     public void testMap(String mapName, int Mode, int origine, int destination) throws Exception {
+		//afficher infos de depart et destination
+		System.out.println("Origine : " + origine);
+		System.out.println("Destination : " + destination);
 
 		// Create a new BinaryGraphReader that read from the given input stream.
 		GraphReader reader = new BinaryGraphReader(new DataInputStream(new BufferedInputStream(new FileInputStream(mapName))));
@@ -53,9 +56,7 @@ public class AStarAlgorithmTest {
 				}
 
 
-				//afficher infos de depart et destination
-				System.out.println("Origine : " + origine);
-				System.out.println("Destination : " + destination);
+
 
 				if(origine==destination) {
 					System.out.println("Origine et Destination identiques , donc cout solution: 0 ");
@@ -63,43 +64,26 @@ public class AStarAlgorithmTest {
 				} 
                 else 
                 {		
-                    //conclurer des infos et mise a jour avec different algo
 					ShortestPathData data = new ShortestPathData(graph, graph.get(origine),graph.get(destination), arcInspectorAstar);
 
-                    //BellmanFord et AStar
-					BellmanFordAlgorithm B = new BellmanFordAlgorithm(data);
 					AStarAlgorithm D = new AStarAlgorithm(data);
+                
 
-					// Recuperation des solutions de Bellman et AStar pour comparer 
 					ShortestPathSolution solutionD = D.run();
-					ShortestPathSolution solutionB = B.run();
-
 
 					double costSolutionD;
-					double costSolutionB;
-                    double CoutSolution;
+		
                     //get le temps ou le longueur d'apres le mode
 					if(Mode == 0) { //Temps
 						//Calcul du cout de la solution 
 						costSolutionD = solutionD.getPath().getMinimumTravelTime();
-						costSolutionB = solutionB.getPath().getMinimumTravelTime();
 
-					} else {
+					} else {//distance
 						costSolutionD = solutionD.getPath().getLength();
-						costSolutionB = solutionB.getPath().getLength();
+					
 					}
-                    //comparer le moins court ou le plus rapide
-                    if(costSolutionD==costSolutionB){
-                        System.out.println("BellmanFord et AStar ont le meme resultat: " + costSolutionD);
-
-                    }else{
-                        if(costSolutionD<costSolutionB){
-                            CoutSolution=costSolutionD;
-                        }else{
-                            CoutSolution=costSolutionB;
-                        }
-                        System.out.println("Cout solution: " + CoutSolution);
-                    }
+                    System.out.println("Cout solution d'alogorithme A*: " + costSolutionD);
+                    
 
 
 				}
@@ -116,7 +100,7 @@ public class AStarAlgorithmTest {
 
         System.out.println("test de distance avec la carte insa ");
 
-        String mapName = "/home/el-jid/Bureau/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/insa.mapgr";
+        String mapName = "/Users/yongjiazeng/Desktop/3mic下/be graphe/map/insa.mapgr";
 
         AStarAlgorithmTest test = new AStarAlgorithmTest();
         int  origine ;
@@ -144,7 +128,7 @@ public class AStarAlgorithmTest {
 
         System.out.println("test de distance avec la carte insa ");
 
-        String mapName = "/home/el-jid/Bureau/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Maps/insa.mapgr";
+        String mapName = "/Users/yongjiazeng/Desktop/3mic下/be graphe/map/insa.mapgr";
         AStarAlgorithmTest Test = new AStarAlgorithmTest();
         int  origine ;
         int destination;
