@@ -35,7 +35,7 @@ public class Path {
      */
     public static Path createFastestPathFromNodes(Graph graph, List<Node> nodes)
             throws IllegalArgumentException {
-        //pareil comma la methode createShortestPathFromNodes
+        //pareil comme la methode createShortestPathFromNodes
         List<Arc> arcs = new ArrayList<Arc>();
         boolean arc_rapide_init = false;
         Arc arc_rapide = null;
@@ -57,7 +57,6 @@ public class Path {
             /* Parcours des noeuds */
             while (nodeIte.hasNext()) {
                 Node destination = nodeIte.next();
-    
             
                List<Arc> arcIter = origine.getSuccessors();
                 
@@ -69,8 +68,8 @@ public class Path {
                             arc_rapide = arc;
                             arc_rapide_init = true;
                         }
-                        
-                        else if (arc.getMinimumTravelTime() < arc_rapide.getMinimumTravelTime()) { //chercher le plus rapide
+                        //chercher le plus rapide
+                        else if (arc.getMinimumTravelTime() < arc_rapide.getMinimumTravelTime()) { 
                             arc_rapide = arc;
                         }
                     }
@@ -119,7 +118,7 @@ public class Path {
         }
         //un seul noeud
         else if (nodes.size() == 1) {
-            return new Path(graph, nodes.get(0));
+            return new Path(graph, nodes.get(0));//prendre le seul node dans le list nodes
         }
         //plusieurs noeuds
         else {
@@ -127,7 +126,6 @@ public class Path {
             Iterator<Node> nodeIte = nodes.iterator();
             Node origine = nodeIte.next();
     
-            
             while (nodeIte.hasNext()) {
                 Node destination = nodeIte.next();
     
@@ -150,7 +148,7 @@ public class Path {
                         }
                     }
                 }
-                //Si on n'a pas retenu d'arc, c'est que la liste de successeurs n'est pas valide 
+                //two consecutive nodes in the list are not connected in the graph
                 if (arc_court == null) {
                     throw new IllegalArgumentException();
                 }
@@ -290,7 +288,7 @@ public class Path {
     }
 
     /**
-     * Check if this path is valid.
+     * Check if this path is valid.   
      * 
      * A path is valid if any of the following is true:
      * <ul>
@@ -316,12 +314,12 @@ public class Path {
         else if (this.size()==1){
             return true;
         }
-        /*le chemin contient plus de deux noeuds et continue */
+        //le chemin contient plus de deux noeuds et continue 
         else{
-            Node origine = this.getOrigin();
+            Node origine = this.getOrigin();    //origine de path
             for(Arc arc : this.arcs){
-                if (!origine.equals(arc.getOrigin())) {
-    				return false;
+                if (!origine.equals(arc.getOrigin())) { //verifier origine de arc2=destination de arc1
+    				return false;                       //sinon     
     			}
     			origine = arc.getDestination();
             }
@@ -337,11 +335,11 @@ public class Path {
      * 
      */
     public float getLength() {
-        float totalLength =0.0f;
-        for (Arc myArc : this.arcs) {
-            totalLength += myArc.getLength();
+        int length =0;
+        for (Arc arc : this.arcs) {
+            length += arc.getLength();
         }
-        return totalLength;
+        return (float)length;
     }
 
     /**
@@ -355,7 +353,7 @@ public class Path {
      * @deprecated Need to be implemented.
      */
     public double getTravelTime(double speed) {
-        double vitesse = (speed * 1000.0)/3600.0 ;  //pourquoi???
+        double vitesse = speed * 1000.0/3600.0 ;      //speed km/h = vitesse m/s
         double Time ;
         float longueur = getLength() ;
         Time = longueur / vitesse ;
@@ -370,7 +368,7 @@ public class Path {
      * 
      * 
      */
-    public double getMinimumTravelTime() {    //pas compris ici
+    public double getMinimumTravelTime() {    //MinimumTravelTime de path=la somme de MinimumTravelTime de arc
         double Time = 0;
         for (Arc myArc : this.arcs){
             Time += myArc.getMinimumTravelTime();

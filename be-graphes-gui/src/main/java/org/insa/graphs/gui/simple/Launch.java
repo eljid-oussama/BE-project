@@ -51,25 +51,28 @@ public class Launch {
         final String pathName = "/mnt/commetud/3eme Annee MIC/Graphes-et-Algorithmes/Paths/path_fr31insa_rangueil_r2.path";
 
         // Create a graph reader.
-        final GraphReader reader = new BinaryGraphReader(
-                new DataInputStream(new BufferedInputStream(new FileInputStream(mapName))));
+        final GraphReader reader = new BinaryGraphReader(new DataInputStream(new BufferedInputStream(new FileInputStream(mapName))));
+        /*
+         * FileInputStream : Il crée un flux de lecture brut à partir d'un fichier spécifié par mapName.
+         * BufferedInputStream : Il crée un flux de lecture tamponné qui améliore les performances en lisant les données par blocs plutôt que par octet.
+         * DataInputStream : Il crée un flux de lecture de données qui facilite la lecture des données primitives à partir du flux d'entrée.
+         */
 
         // Read the graph.
-        Graph graph = reader.read();
-
-        //ecrire des commentaires ici 
+        final Graph graph = reader.read();
         
         // Create the drawing:
-        Drawing drawing = createDrawing();
+        final Drawing drawing = createDrawing();
 
         // Draw the graph on the drawing.
         drawing.drawGraph(graph);
 
         // Create a PathReader.
-        PathReader pathReader = new BinaryPathReader(new DataInputStream(new BufferedInputStream(new FileInputStream(pathName))));
+        final PathReader pathReader = new BinaryPathReader(new DataInputStream(new BufferedInputStream(new FileInputStream(pathName))));
 
         // Read the path.
-        Path path = pathReader.readPath(graph);
+        final Path path = pathReader.readPath(graph);   
+                                   //Read a path of the given graph and returns it.
 
         // Draw the path.
         drawing.drawPath(path);

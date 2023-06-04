@@ -66,7 +66,6 @@ public class DijsktraAlgorithmTest {
 
 					DijkstraAlgorithm D = new DijkstraAlgorithm(data);
 
-
 					ShortestPathSolution solutionD = D.run();
 
 					double costSolutionD;
@@ -82,7 +81,40 @@ public class DijsktraAlgorithmTest {
                  
                         System.out.println("Cout solution d'alogorithme Dijkstra : " + costSolutionD);
                     
-                    
+                    //verifier le coutsolution de BellmanFord et AStar est le meme ou pas
+                    /* 
+ 					BellmanFordAlgorithm B = new BellmanFordAlgorithm(data);
+ 					AStarAlgorithm D = new AStarAlgorithm(data);
+
+ 					// Recuperation des solutions de Bellman et AStar pour comparer 
+ 					ShortestPathSolution solutionD = D.run();
+ 					ShortestPathSolution solutionB = B.run();
+
+ 					double costSolutionD;
+ 					double costSolutionB;
+                     double CoutSolution;
+                     //get le temps ou le longueur d'apres le mode
+ 					if(Mode == 0) { //Temps
+ 						//Calcul du cout de la solution 
+ 						costSolutionD = solutionD.getPath().getMinimumTravelTime();
+ 						costSolutionB = solutionB.getPath().getMinimumTravelTime();
+
+ 					} else {
+ 						costSolutionD = solutionD.getPath().getLength();
+ 						costSolutionB = solutionB.getPath().getLength();
+ 					}
+                     //comparer le moins court ou le plus rapide
+                     if(costSolutionD==costSolutionB){
+                         System.out.println("BellmanFord et AStar ont le meme resultat: " + costSolutionD);
+
+                     }else{
+                         if(costSolutionD<costSolutionB){
+                             CoutSolution=costSolutionD;
+                         }else{
+                             CoutSolution=costSolutionB;
+                         }
+                         System.out.println("Cout solution: " + CoutSolution);
+                    */
 
 
 				}

@@ -16,7 +16,7 @@ import java.util.List;
  *
  */
 public final class Graph {
-
+    //Private final : ne peut pas être modifiée après son initialisation
     // Map identifier.
     private final String mapId;
 
