@@ -16,7 +16,7 @@ public class Label implements Comparable<Label>  {
         this.marque = false;
         this.cout_realise = Float.POSITIVE_INFINITY; // Initialiser le coût à l'infini par défaut
         this.pere = null;
-        this.label = null; // Initialiser le label à null par défaut
+        this.label = null;              // Initialiser le label à null par défaut
     }
 
     // Getter 
@@ -27,7 +27,7 @@ public class Label implements Comparable<Label>  {
         return this.marque;
     }
 
-   public float getcout_realise() {
+    public float getcout_realise() {
         return this.cout_realise;
     }
 
@@ -35,12 +35,11 @@ public class Label implements Comparable<Label>  {
         return this.pere;
     }
 
-    // Getter pour le coût, qui renvoie le coût réalisé
+    // renvoie le coût de ce label. Pour le moment, le coût est égal au coût réalisé
     public float getTotalCost() {
         return this.cout_realise;
     }
 
-    /* Retourne true si le noeud a été mis dans le tas */
 	public boolean getinTas() {
 		return this.inTas;
 	}
@@ -49,6 +48,7 @@ public class Label implements Comparable<Label>  {
         return this.label;
     }
 
+    
    // Setteur
     public void setCout_realise(float costSoFar) {
         this.cout_realise = costSoFar;

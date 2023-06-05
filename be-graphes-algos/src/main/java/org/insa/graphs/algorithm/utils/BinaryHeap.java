@@ -71,7 +71,7 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
      * 
      * @param index Index at which the percolate begins.
      */
-    private void percolateUp(int index) {
+    private void percolateUp(int index) {   //reorganiser les element devant de index vers le haut
         E x = this.array.get(index);
 
         for (; index > 0
@@ -89,15 +89,16 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
      * 
      * @param index Index at which the percolate begins.
      */
-    private void percolateDown(int index) {
+    private void percolateDown(int index) { //reorganiser les element apres de index vers le bas
         int ileft = indexLeft(index);
         int iright = ileft + 1;
 
         if (ileft < this.currentSize) {
-            E current = this.array.get(index);
+            E current = this.array.get(index);  //recuprere element d'indice index de list
             E left = this.array.get(ileft);
             boolean hasRight = iright < this.currentSize;
             E right = (hasRight) ? this.array.get(iright) : null;
+
 
             if (!hasRight || left.compareTo(right) < 0) {
                 // Left is smaller
@@ -125,7 +126,7 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
     @Override
     public int size() {
-        return this.currentSize;
+        return this.currentSize;    //this.currentSize retourne la taille de tas
     }
 
     @Override
@@ -134,7 +135,13 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         this.arraySet(index, x);
         this.percolateUp(index);
     }
-
+    /*
+     * tas init:[6, 8, 4, 9, 10, 15, 25]    remove('9')
+     * position=3
+     * position_dernier=6 ; dernier_element='25' ; remplace '9' par '25' => [6, 8, 4, 25, 10, 15,25]
+     * this.array.remove(this.currentSize);   ==>  [6, 8, 4, 25, 10, 15 ]
+     * ensuite re-organiser  ordre de tas
+     */
     @Override
     public void remove(E x) throws ElementNotFoundException {
          int position;
@@ -144,28 +151,23 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
             throw new ElementNotFoundException(x);
         }
         else{
-            position=this.array.indexOf(x);
-            //trouve 'x' 
+            position=this.array.indexOf(x);  //retourner l'indice de x dans tas(list)
+            //trouve 'x' dans tas
             if(position>=0 && position<this.currentSize ) {
-                position_dernier=--this.currentSize;
                 //if(position_dernier=position)
-                
+                position_dernier=--this.currentSize;       //position_dernier = this.currentSize - 1
                 if(position_dernier>position){
                     dernier_element=this.array.get(position_dernier);
-                    this.array.set(position, dernier_element);
+                    this.array.set(position, dernier_element);//remplacer element d'indice "position" par "dernier_element"."x" n'exite plus alors
+                  //this.array.remove(this.currentSize);    //supprimer e dernier element de tas
                     this.percolateDown(position);
                     this.percolateUp(position);
                 }
             }
-
             //par trouve dans le tas
             else{   
-               
                 throw new ElementNotFoundException(x);
             }
-                
-                
-            
 
         }
     }
