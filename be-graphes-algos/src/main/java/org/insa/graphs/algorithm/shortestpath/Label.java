@@ -27,7 +27,7 @@ public class Label implements Comparable<Label>  {
         return this.marque;
     }
 
-    public float getcout_realise() {
+    public float getcout() {    //repete avec la methode getTotalCost?
         return this.cout_realise;
     }
 
@@ -76,10 +76,10 @@ public class Label implements Comparable<Label>  {
 	/* Compare les Labels selon leur coût */
 	public int compareTo(Label autre) {
 		int resultat;
-		if (this.getcout_realise() < autre.getcout_realise()) {
+		if (this.getcout() < autre.getcout()) {
 			resultat = -1;
 		}
-		else if (this.getcout_realise() == autre.getcout_realise()) {
+		else if (this.getcout() == autre.getcout()) {
 			resultat = 0;
 		}
 		else {

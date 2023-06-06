@@ -335,11 +335,11 @@ public class Path {
      * 
      */
     public float getLength() {
-        int length =0;
+        float  length =(float)0;
         for (Arc arc : this.arcs) {
             length += arc.getLength();
         }
-        return (float)length;
+        return length;
     }
 
     /**
@@ -353,7 +353,7 @@ public class Path {
      * @deprecated Need to be implemented.
      */
     public double getTravelTime(double speed) {
-        double vitesse = speed * 1000.0/3600.0 ;      //speed km/h = vitesse m/s
+        double vitesse = (speed * 1000.0)/3600.0 ;      //speed km/h = vitesse m/s
         double Time ;
         float longueur = getLength() ;
         Time = longueur / vitesse ;

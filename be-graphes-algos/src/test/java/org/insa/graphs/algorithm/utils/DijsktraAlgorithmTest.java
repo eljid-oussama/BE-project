@@ -32,7 +32,7 @@ public class DijsktraAlgorithmTest {
 
             //Argument invalide
 		if (Mode!=0 && Mode!=1) {
-			System.out.println("argument incorrecte");
+			System.out.println("mode incorrecte");
 		} else {
                  //// cas:hors du graphe ou sommets inexistent
 			if (origine<0 || destination<0 || origine>=(graph.size()-1) || destination>=(graph.size()-1)) { 
@@ -40,19 +40,19 @@ public class DijsktraAlgorithmTest {
 
 			} else {
                 //This class can be used to indicate to an algorithm which arcs can be used and the costs of the usable arcs..
-				ArcInspector arcInspectorDijkstra;
+				ArcInspector arcDijkstra;
 
                 //ArcInspectorFactory:filtre des arcs d'apres le choix de mode
                     //en temps
 				if (Mode == 0) { 
 					System.out.println("Mode : Temps");
                     // correspond au troisième filtre "Only road allowed for cars and time"
-					arcInspectorDijkstra = ArcInspectorFactory.getAllFilters().get(2); 
+					arcDijkstra = ArcInspectorFactory.getAllFilters().get(2); 
 				} 
                 else { 
 					System.out.println("Mode : Distance");
                     // correspond au premième filtre "No filter (all arcs allowed)"
-					arcInspectorDijkstra = ArcInspectorFactory.getAllFilters().get(0);
+					arcDijkstra = ArcInspectorFactory.getAllFilters().get(0);
 				}
 
 
@@ -62,7 +62,7 @@ public class DijsktraAlgorithmTest {
 				} 
                 else 
                 {	
-					ShortestPathData data = new ShortestPathData(graph, graph.get(origine),graph.get(destination), arcInspectorDijkstra);
+					ShortestPathData data = new ShortestPathData(graph, graph.get(origine),graph.get(destination), arcDijkstra);
 
 					DijkstraAlgorithm D = new DijkstraAlgorithm(data);
 
