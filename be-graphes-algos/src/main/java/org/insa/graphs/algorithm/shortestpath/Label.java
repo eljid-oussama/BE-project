@@ -27,7 +27,7 @@ public class Label implements Comparable<Label>  {
         return this.marque;
     }
 
-    public float getcout() {    //repete avec la methode getTotalCost?
+    public float getcout() {   
         return this.cout_realise;
     }
 

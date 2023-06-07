@@ -32,7 +32,7 @@ public class AStarAlgorithmTest {
 
             //Argument invalide
 		if (Mode!=0 && Mode!=1) {
-			System.out.println("argument incorrecte");
+			System.out.println("mode incorrecte");
 		} else {
                  //// cas:hors du graphe ou sommets inexistent
 			if (origine<0 || destination<0 || origine>=(graph.size()-1) || destination>=(graph.size()-1)) { 
